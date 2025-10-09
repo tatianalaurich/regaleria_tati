@@ -3,34 +3,51 @@ import { useParams, Link } from "react-router-dom";
 import { getProductById } from "../data/api.js";
 import "./itemdetailcontainer.css";
 
-function ItemDetailContainer() {
+export default function ItemDetailContainer() {
     const { productId } = useParams();
     const [item, setItem] = useState(null);
     const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-    setLoading(true);
-    getProductById(productId).then(data => {
-        setItem(data || null);
-    }).finally(() => setLoading(false));
+    useEffect(() => {
+        setLoading(true);
+        getProductById(productId)
+        .then((data) => setItem(data || null))
+        .finally(() => setLoading(false));
     }, [productId]);
 
-    if (loading) return <main className="detail"><p>Cargando producto...</p></main>;
-    if (!item) return <main className="detail"><p>No se encontró el producto.</p><Link to="/">Volver</Link></main>;
+    if (loading) {
+        return (
+        <main className="detail">
+            <p className="detail-status">Cargando producto...</p>
+        </main>
+        );
+    }
 
-return (
-    <main className="detail">
-        <div className="img-wrap">
+    if (!item) {
+        return (
+        <main className="detail">
+            <p className="detail-status">No se encontró el producto.</p>
+            <Link to="/" className="btn-back">← Volver</Link>
+        </main>
+        );
+    }
+
+    return (
+        <main className="detail">
+        <div className="detail-img">
             <img src={item.img} alt={item.title} />
         </div>
-        <div className="info">
-            <Link className="back" to="/">← Volver</Link>
-            <h1>{item.title}</h1>
-            <p className="desc">{item.desc}</p>
+
+        <div className="detail-info">
+            <Link to="/" className="btn-back">← Volver</Link>
+            <h1 className="detail-title">{item.title}</h1>
+            <p className="detail-price">${item.price.toLocaleString("es-AR")}</p>
+            <p className="detail-desc">{item.desc}</p>
+
+            <div className="detail-actions">
             <button className="btn-primary">Agregar al carrito</button>
-            <p className="price">${item.price.toLocaleString("es-AR")}</p>
+            </div>
         </div>
-    </main>
+        </main>
     );
 }
-export default ItemDetailContainer;

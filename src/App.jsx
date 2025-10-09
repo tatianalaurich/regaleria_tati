@@ -5,7 +5,7 @@ import ItemDetailContainer from "./components/itemdetailcontainer.jsx";
 import NotFound from "./components/notfound.jsx";
 import "./App.css";
 
-function App() {
+export default function App() {
   return (
     <>
       <NavBar />
@@ -18,16 +18,12 @@ function App() {
           path="/category/:categoryId"
           element={<ItemListContainer greeting="Catálogo por categoría" />}
         />
-        <Route
-          path="/item/:productId"
-          element={<ItemDetailContainer />}
-        />
+        <Route path="/item/:productId" element={<ItemDetailContainer />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
 }
-export default App;
 
 
 
