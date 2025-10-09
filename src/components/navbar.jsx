@@ -1,33 +1,24 @@
-import CartWidget from "./cartwidget";
+import { Link, NavLink } from "react-router-dom";
+import CartWidget from "./cartwidget.jsx";
+import "./navbar.css";
 
 function NavBar() {
     return (
-        <header
-            style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: "1rem",
-                padding: "1rem 1.5rem",
-                borderBottom: "1px solid #eee",
-                position: "sticky",
-                top: 0,
-                background: "#f9cfcfff",
-            }}
-        >
-        <a href="#" style={{ display: "flex", alignItems: "center", gap: ".75rem", textDecoration: "none", color: "inherit" }}>
-            <img src="./logotati.png" alt="Logo tienda Regaleria Tati" style={{ height: 100, width: "auto" }} />
-            <strong>Regalería Tati</strong>
-        </a>
-
-        <nav style={{ display: "flex", gap: "1rem" }}>
-            <a href="#" style={{ textDecoration: "none", color: "#333" }}>Home</a>
-            <a href="#" style={{ textDecoration: "none", color: "#333" }}>Catálogo</a>
-            <a href="#" style={{ textDecoration: "none", color: "#333" }}>Contacto</a>
+        <header className="navbar">
+            <Link to="/" className="navbar-logo">
+                <img src="/logotati.png" alt="Logo tienda Regalería Tati" />
+                <strong>Regalería Tati</strong>
+            </Link>
+        <nav className="navbar-links">
+            <NavLink to="/category/mates">Mates</NavLink>
+            <NavLink to="/category/portaespiral">Portaespiral</NavLink>
+            <NavLink to="/" end>Home</NavLink>
+            <NavLink to="/category/portalentes">Portalentes</NavLink>
+            <NavLink to="/category/chaulatasx2">Chaulatas x2</NavLink>
+            <NavLink to="/category/chaulata">Chaulata</NavLink>
         </nav>
-
-    <CartWidget />
-    </header>
+        <CartWidget />
+        </header>
     );
 }
 export default NavBar;
