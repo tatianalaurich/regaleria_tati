@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getProducts, getProductsByCategory } from "../data/api.js";
 import "./itemlistcontainer.css";
 
