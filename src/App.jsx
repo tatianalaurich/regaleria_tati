@@ -3,6 +3,10 @@ import NavBar from "./components/navbar.jsx";
 import ItemListContainer from "./components/itemlistcontainer.jsx";
 import ItemDetailContainer from "./components/itemdetailcontainer.jsx";
 import NotFound from "./components/notfound.jsx";
+import Footer from "./components/Footer.jsx";
+import Beneficios from "./components/Beneficios.jsx";
+import CartPage from "./components/CartPage.jsx";
+import CheckoutPage from "./components/CheckoutPage.jsx";
 import "./App.css";
 
 export default function App() {
@@ -12,18 +16,27 @@ export default function App() {
       <Routes>
         <Route
           path="/"
-          element={<ItemListContainer greeting="¡Bienvenid@ al catálogo de Regalería Tati!" />}
+          element={
+            <>
+              <Beneficios />
+              <ItemListContainer greeting="¡Bienvenidos al catálogo de Regalería Tati!" />
+            </>
+          }
         />
         <Route
           path="/category/:categoryId"
           element={<ItemListContainer greeting="Catálogo por categoría" />}
         />
         <Route path="/item/:productId" element={<ItemDetailContainer />} />
+        <Route path="/carrito" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </>
   );
 }
+
 
 
 

@@ -1,0 +1,73 @@
+.beneficios{
+    background: #ffffff;
+    padding: 1.25rem 1rem;
+    margin-top: 1.25rem;
+    border-top: 1px solid #f3d1df;
+    border-bottom: 1px solid #f3d1df;
+}
+
+.beneficios-interno{
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+}
+
+.beneficio{
+    position: relative;
+    padding: .5rem 1rem;
+}
+
+.beneficio:not(:last-child)::after{
+    content: "";
+    position: absolute;
+    right: 0; top: 10%; bottom: 10%;
+    width: 1px;
+    background: #8a2c6e33;
+}
+
+.icono-beneficio{
+    font-size: 28px;
+    color: #d63384;
+    margin-bottom: .35rem;
+}
+
+.titulo-beneficio{
+    margin: 0;
+    font-size: 1.05rem;
+    letter-spacing: .02em;
+    color: #333;
+    font-weight: 700;
+}
+
+.texto-beneficio{
+    margin: .15rem 0 0;
+    font-size: .95rem;
+    letter-spacing: .02em;
+    color: #555;
+}
+
+.beneficio:not(:last-child)::after{
+    content: "";
+    position: absolute;
+    right: 0; top: 10%; bottom: 10%;
+    width: 1px;
+    background: #ead0dc;
+}
+
+@media (max-width: 768px){
+    .beneficios-interno{
+        grid-template-columns: 1fr;
+        gap: .75rem;
+    }
+    .beneficio{ 
+        padding: .5rem 0;  
+        margin-top: .75rem; 
+    }
+    .beneficio:not(:last-child)::after{ display: none; }
+    .titulo-beneficio{ font-size: 1rem; }
+    .texto-beneficio{ font-size: .9rem; }
+}

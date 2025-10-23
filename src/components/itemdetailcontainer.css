@@ -29,6 +29,13 @@
     border-radius: 10px; 
 }
 
+.detail-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
 .detail-info .btn-back {
     text-decoration: none;
     color: #333;
@@ -37,10 +44,14 @@
 }
 
 .detail-title {
-    margin: 0.2rem 0;
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-family: 'Great Vibes', cursive;
+    font-weight: 300;
+    color: #d63384;
+    line-height: 1.05;
+    margin: .2rem 0;
+    font-size: clamp(2rem, 3.5vw + .3rem, 3.2rem);
 }
+
 
 .detail-price {
     font-weight: 700;
@@ -57,6 +68,8 @@
 .detail-actions {
     display: flex;
     gap: 0.6rem;
+    justify-content: center;
+    width: 100%;
 }
 
 .btn-primary {
@@ -66,10 +79,38 @@
     border-radius: 8px;
     padding: 0.6rem 0.9rem;
     cursor: pointer;
+    align-items: center;
 }
 
 .btn-primary:hover {
     opacity: 0.9;
+}
+
+.toast{
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    background: #d63384;
+    color: #fff;
+    padding: .6rem .9rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    transform: translateY(12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s ease, transform .22s ease;
+    z-index: 1200;
+    font-weight: 600;
+    font-size: .95rem;
+}
+
+.toast.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (min-width: 992px){
+    .detail .detail-title{ font-size: 3.4rem; }
 }
 
 @media (min-width: 768px) {
@@ -79,10 +120,24 @@
     .detail-img img {
         height: 360px;
     }
+    .toast{
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, 12px);
+        max-width: 90%;
+        text-align: center;
+    }
+    .toast.show{
+        transform: translate(-50%, 0);
+    }
 }
+
 @media (max-width: 600px) {
     .detail-img img {
         max-width: 90%;
         max-height: 300px;
+    }
+    .btn-primary {
+    min-width: 220px;
     }
 }
