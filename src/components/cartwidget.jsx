@@ -3,25 +3,17 @@ import { useCart } from "../context/CartContext.jsx";
 
 function CartWidget() {
     const { count } = useCart();
+
     return (
-        <Link to="/carrito" aria-label="Carrito" style={{ textDecoration: "none" }}>
-        <button
-            aria-hidden
-            style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: ".5rem",
-            background: "#fff",
-            border: "1px solid #ddd",
-            borderRadius: "8px",
-            padding: ".4rem .7rem",
-            cursor: "pointer",
-            fontSize: "18px",
-            }}
+        <Link
+        to="/carrito"
+        className="cartw"
+        aria-label={`Carrito${count ? `, ${count} producto${count > 1 ? "s" : ""}` : ""}`}
         >
-            🛒 <span style={{ fontWeight: 600 }}>{count}</span>
-        </button>
+        <span className="cartw-icon" aria-hidden="true">🛒</span>
+        <span className="cartw-count" aria-hidden="true">{count}</span>
         </Link>
     );
-}
+    }
 export default CartWidget;
+

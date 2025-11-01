@@ -2,13 +2,13 @@
     display: flex;
     align-items: center;
     gap: .5rem;
-    max-width: 450px;
-    margin: 0 auto 1rem;
+    max-width: 480px;
+    width: 100%;
+    margin: 1.25rem auto 1rem;
     padding: .4rem .6rem;
     background: #fff;
     border: 2px solid #d63384;
     border-radius: 999px;
-    margin-top: 1.25rem;
 }
 
 .buscador-icono{
@@ -21,7 +21,7 @@
     flex: 1;
     border: 0;
     outline: 0;
-    font-size: 1rem;
+    font-size: 1rem; 
     background: transparent;
     padding: .3rem .2rem;
     min-width: 0;
@@ -38,6 +38,10 @@
     cursor: pointer;
     color: #262525;
 }
+.buscador-clear:focus-visible{
+    outline: 2px solid #d63384;
+    outline-offset: 2px;
+}
 
 .buscador-btn{
     border: 2px solid #d63384;
@@ -49,9 +53,14 @@
     cursor: pointer;
     transition: filter .2s ease;
 }
+.buscador-btn:hover{ filter: brightness(.95); }
+.buscador-btn:focus-visible{
+    outline: 2px solid #d63384;
+    outline-offset: 2px;
+}
 
-.buscador-btn:hover{ 
-    filter: brightness(.95); 
+@media (max-width: 480px){
+    .buscador{ max-width: 100%; }
 }
 
 @media (max-width: 768px){

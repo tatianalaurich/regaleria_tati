@@ -1,6 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Great+Vibes&display=swap');
 
-html, body, #root { height: 100%; margin: 0; }
+*, *::before, *::after { 
+  box-sizing: border-box; 
+}
+html, body, #root { 
+  height: 100%; 
+  margin: 0; 
+}
+img, picture, video, canvas, svg { 
+  display: block; 
+  max-width: 100%; 
+}
+input, button, textarea, select { 
+  font: inherit; 
+}
 
 :root {
   font-family: 'Quicksand', sans-serif;
@@ -19,7 +32,13 @@ a {
   color: #d63384;
   text-decoration: none;
 }
-a:hover { color: #b8246b; }
+a:hover { 
+  color: #b8246b; 
+}
+a:focus-visible {
+  outline: 2px solid #d63384;
+  outline-offset: 2px;
+}
 
 body {
   display: flex;
@@ -29,7 +48,10 @@ body {
   background-color: #ffffff;
   color: #213547;
 }
-main { flex: 1 0 auto; }
+
+main { 
+  flex: 1 0 auto; 
+}
 
 h1, h2 {
   font-family: 'Great Vibes', cursive;
@@ -56,6 +78,7 @@ button {
   color: #d63384;
   cursor: pointer;
   transition: all 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 button:hover {
   background-color: #d63384;
@@ -72,16 +95,16 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
-  a { color: #ff5aa6; }
-  a:hover { color: #ff76b5; }
+  a { color: #d63384; }
+  a:hover { color: #b8246b; }
   button {
-    background-color: transparent;
-    color: #ff5aa6;
-    border-color: #ff5aa6;
+    background-color: #fff;
+    color: #d63384;
+    border-color: #d63384;
   }
   button:hover {
-    background-color: #ff5aa6;
-    color: #242424;
+    background-color: #d63384;
+    color: #fff;
   }
 }
 

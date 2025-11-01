@@ -2,6 +2,14 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const CartContext = createContext(null);
 
+const clamp = (qty, stock) => {
+    const n = Math.max(1, Number(qty || 1));
+    if (typeof stock === "number" && stock > 0) {
+        return Math.min(n, stock);
+    }
+    return n;
+};
+
 export function CartProvider({ children }) {
     const [items, setItems] = useState(() => {
         try { return JSON.parse(localStorage.getItem("cart-items")) || []; }
@@ -17,27 +25,35 @@ export function CartProvider({ children }) {
         const i = prev.findIndex(p => p.id === product.id);
         if (i >= 0) {
             const copy = [...prev];
-            copy[i] = { ...copy[i], qty: copy[i].qty + qty };
+            const stock = typeof copy[i].stock === "number" ? copy[i].stock : product.stock;
+            const nextQty = clamp(copy[i].qty + qty, stock);
+            copy[i] = { ...copy[i], ...product, stock, qty: nextQty };
             return copy;
         }
-        return [...prev, { ...product, qty }];
+        const stock = product.stock;
+        return [...prev, { ...product, stock, qty: clamp(qty, stock) }];
         });
     };
 
     const increase = (id, step = 1) => {
-        setItems(prev => prev.map(p => p.id === id ? { ...p, qty: p.qty + step } : p));
-    };
-
-    const decrease = (id, step = 1) => {
-        setItems(prev => prev.flatMap(p => {
-        if (p.id !== id) return [p];
-        const next = p.qty - step;
-        return next > 0 ? [{ ...p, qty: next }] : [];
+        setItems(prev => prev.map(p => {
+        if (p.id !== id) return p;
+        return { ...p, qty: clamp(p.qty + step, p.stock) };
         }));
     };
 
+    const decrease = (id, step = 1) => {
+        setItems(prev => prev.map(p => {
+        if (p.id !== id) return p;
+        return { ...p, qty: clamp(p.qty - step, p.stock) };
+        }).filter(p => p.qty > 0));
+    };
+
     const setQty = (id, qty) => {
-        setItems(prev => prev.flatMap(p => (p.id === id ? (qty > 0 ? [{ ...p, qty }] : []) : [p])));
+        setItems(prev => prev.map(p => {
+        if (p.id !== id) return p;
+        return { ...p, qty: clamp(qty, p.stock) };
+        }).filter(p => p.qty > 0));
     };
 
     const removeItem = (id) => setItems(prev => prev.filter(p => p.id !== id));

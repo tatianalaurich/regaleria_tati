@@ -8,11 +8,13 @@ import Beneficios from "./components/Beneficios.jsx";
 import CartPage from "./components/CartPage.jsx";
 import CheckoutPage from "./components/CheckoutPage.jsx";
 import "./App.css";
+import Seed from "./dev/Seed.jsx";
 
 export default function App() {
   return (
     <>
       <NavBar />
+      <main>
       <Routes>
         <Route
           path="/"
@@ -31,7 +33,9 @@ export default function App() {
         <Route path="/carrito" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/seed" element={<Seed />} />
       </Routes>
+      </main>
       <Footer />
     </>
   );
