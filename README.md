@@ -30,14 +30,14 @@ npm run dev
 
 ## Checklist final
 
-- [x] Firebase productos (OK, colección `Products`)
-- [x] Listado y detalle (OK)
-- [x] Separación contenedor/presentación (añadido `ItemList` + `Item`)
-- [x] ItemCount con validaciones (OK en detalle)
-- [x] Router por secciones (OK)
-- [x] Context cart (OK)
-- [x] Cart con cantidades/subtotales/total (OK)
-- [x] CartWidget con contador (OK)
-- [x] **Orden en Firestore en Checkout** (añadido arriba ✅)
-- [x] Renderizado condicional (OK)
-- [x] **README.md** (plantilla arriba ✅)
+- Firebase productos (OK, colección `Products`)
+- Listado y detalle (OK)
+- Separación contenedor/presentación (añadido `ItemList` + `Item`)
+- ItemCount con validaciones (OK en detalle)
+- Router por secciones (OK)
+- Context cart (OK)
+- Cart con cantidades/subtotales/total (OK)
+- CartWidget con contador (OK)
+- Orden en Firestore en Checkout
+- Renderizado condicional (OK)
+- README.md*
